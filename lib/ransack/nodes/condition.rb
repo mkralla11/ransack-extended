@@ -81,7 +81,7 @@ module Ransack
 
       def display=(show)
         debugger
-        if args == "1"
+        if show == "1"
           Display.new(@context, show)
         end
       end
