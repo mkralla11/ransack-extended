@@ -42,14 +42,13 @@ module Ransack
           hash[key] = [parent, attr_name]
         end
       end
-      debugger
-      stop=1
     end
 
     # Convert a string representing a chain of associations and an attribute
     # into the attribute itself
     def contextualize(str)
       parent, attr_name = @bind_pairs[str]
+      debugger
       table_for(parent)[attr_name]
     end
 
