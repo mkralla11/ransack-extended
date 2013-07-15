@@ -21,7 +21,6 @@ module Ransack
         raise ArgumentError, "attribute_select must be called inside a search FormBuilder!" unless object.respond_to?(:context)
         options[:include_blank] = true unless options.has_key?(:include_blank)
         bases = [''] + association_array(options[:associations])
-        debugger
         if bases.size > 1
           @template.grouped_collection_select(
             @object_name, :name, attribute_collection_for_bases(bases), :last, :first, :first, :last,
@@ -136,7 +135,7 @@ module Ransack
 
       def display_checkbox(options = {}, html_options = {})
 
-        @template.check_box(@object_name, :d, objectify_options(options), @default_options.merge(html_options))
+        @template.check_box(@object_name, :d, objectify_options(options), checked_value = "1", @default_options.merge(html_options))
         # check_box(
         #   @object_name, :d, @default_options.merge(html_options)
         # )
