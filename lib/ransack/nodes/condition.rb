@@ -137,6 +137,7 @@ module Ransack
       end
 
       def build(params)
+        debugger
         params.with_indifferent_access.each do |key, value|
           if key.match(/^(a|v|p|m|d)$/)
             self.send("#{key}=", value)
