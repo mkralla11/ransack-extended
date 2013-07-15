@@ -2,7 +2,7 @@ require 'ransack/visitor'
 
 module Ransack
   class Context
-    attr_reader :search, :object, :klass, :base, :engine, :arel_visitor
+    attr_reader :search, :object, :klass, :base, :engine, :arel_visitor, :displayer
     attr_accessor :auth_object, :search_key
 
     class << self
@@ -49,6 +49,10 @@ module Ransack
     def contextualize(str)
       parent, attr_name = @bind_pairs[str]
       table_for(parent)[attr_name]
+    end
+
+    def displayer
+      
     end
 
     def bind(object, str)

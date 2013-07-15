@@ -126,6 +126,12 @@ module Ransack
         end
       end
 
+      def build_display(display = nil)
+        Display.new(@context, display).tap do |display|
+          self.display << display
+        end
+      end
+
       def build_value(val = nil)
         Value.new(@context, val).tap do |value|
           self.values << value

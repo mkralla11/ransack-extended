@@ -26,7 +26,7 @@ module Ransack
     end
 
     def displayer(opts={})
-      @context.display_hash
+      @context.displayer
     end
 
     def build(params)

@@ -34,6 +34,7 @@ module Ransack
           opts[:distinct] ? relation.uniq : relation
         end
 
+
       end
     end
   end
