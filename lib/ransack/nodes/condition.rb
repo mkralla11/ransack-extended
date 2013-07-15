@@ -40,7 +40,6 @@ module Ransack
 
 
       def valid?
-        debugger
         attributes.detect(&:valid?) && predicate && valid_arity? && predicate.validate(values, default_type) && valid_combinator?
       end
 
@@ -179,6 +178,7 @@ module Ransack
       alias :p :predicate_name
 
       def arel_predicate
+        debugger
         predicates = attributes.map do |attr|
           attr.attr.send(predicate.arel_predicate, formatted_values_for_attribute(attr))
         end

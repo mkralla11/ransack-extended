@@ -14,7 +14,6 @@ module Ransack
     end
 
     def visit_Ransack_Nodes_Condition(object)
-      debugger
       object.arel_predicate if object.valid?
     end
 
