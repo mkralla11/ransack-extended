@@ -5,7 +5,7 @@ module Ransack
 
       def initialize(context, show = nil)
         super(context)
-        @display = display
+        @display = show
       end
 
 

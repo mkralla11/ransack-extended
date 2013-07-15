@@ -79,9 +79,11 @@ module Ransack
       end
       alias :d :display
 
-      def display=(args)
+      def display=(show)
         debugger
-        tr = 1
+        if args == "1"
+          Display.new(@context, show)
+        end
       end
       alias :d= :display=
 
