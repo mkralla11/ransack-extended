@@ -35,10 +35,10 @@ module Ransack
         when 's', 'sorts'
           send("#{key}=", value)
         else
-          debugger
           base.send("#{key}=", value) if base.attribute_method?(key)
         end
       end
+      debugger
       self
     end
 
