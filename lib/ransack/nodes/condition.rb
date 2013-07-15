@@ -37,6 +37,8 @@ module Ransack
         end
       end
 
+
+
       def valid?
         attributes.detect(&:valid?) && predicate && valid_arity? && predicate.validate(values, default_type) && valid_combinator?
       end
@@ -49,6 +51,8 @@ module Ransack
         @attributes ||= []
       end
       alias :a :attributes
+
+
 
       def attributes=(args)
         case args
@@ -67,6 +71,16 @@ module Ransack
         end
       end
       alias :a= :attributes=
+
+
+      def display
+        @display ||= nil
+      end
+      alias :d :display
+
+      def display=(args)
+      end
+      alias :d= :display=
 
       def values
         @values ||= []
