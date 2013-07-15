@@ -48,7 +48,6 @@ module Ransack
     # into the attribute itself
     def contextualize(str)
       parent, attr_name = @bind_pairs[str]
-      debugger
       table_for(parent)[attr_name]
     end
 

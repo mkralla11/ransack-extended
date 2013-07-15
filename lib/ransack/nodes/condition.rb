@@ -40,6 +40,7 @@ module Ransack
 
 
       def valid?
+        debugger
         attributes.detect(&:valid?) && predicate && valid_arity? && predicate.validate(values, default_type) && valid_combinator?
       end
 
