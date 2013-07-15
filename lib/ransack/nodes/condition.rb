@@ -180,7 +180,9 @@ module Ransack
       def arel_predicate
         debugger
         predicates = attributes.map do |attr|
-          attr.attr.send(predicate.arel_predicate, formatted_values_for_attribute(attr))
+          if predicate.arel_predicate != "bypass"
+            attr.attr.send(predicate.arel_predicate, formatted_values_for_attribute(attr))
+          end
         end
 
         if predicates.size > 1
