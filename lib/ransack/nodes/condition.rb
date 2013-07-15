@@ -133,7 +133,7 @@ module Ransack
 
       def build(params)
         params.with_indifferent_access.each do |key, value|
-          if key.match(/^(a|v|p|m)$/)
+          if key.match(/^(a|v|p|m|d)$/)
             self.send("#{key}=", value)
           end
         end
