@@ -25,12 +25,17 @@ module Ransack
       @context.evaluate(self, opts)
     end
 
+    def displayer(opts={})
+      @context.display_hash
+    end
+
     def build(params)
       collapse_multiparameter_attributes!(params).each do |key, value|
         case key
         when 's', 'sorts'
           send("#{key}=", value)
         else
+          debugger
           base.send("#{key}=", value) if base.attribute_method?(key)
         end
       end
