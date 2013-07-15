@@ -1,8 +1,8 @@
 module Ransack
   module Nodes
     class Condition < Node
-      i18n_word :attribute, :predicate, :combinator, :value
-      i18n_alias :a => :attribute, :p => :predicate, :m => :combinator, :v => :value
+      i18n_word :attribute, :predicate, :combinator, :value, :display
+      i18n_alias :a => :attribute, :p => :predicate, :m => :combinator, :v => :value, :d => :display
 
       attr_reader :predicate
 
@@ -13,6 +13,7 @@ module Ransack
             combinator = key.match(/_(or|and)_/) ? $1 : nil
             condition = self.new(context)
             condition.build(
+              :d => display,
               :a => attributes,
               :p => predicate.name,
               :m => combinator,
