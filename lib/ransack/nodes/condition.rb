@@ -28,6 +28,7 @@ module Ransack
         private
 
         def extract_attributes_and_predicate(key)
+          debugger
           str = key.dup
           name = Predicate.detect_and_strip_from_string!(str)
           predicate = Predicate.named(name)
