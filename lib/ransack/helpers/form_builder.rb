@@ -98,6 +98,7 @@ module Ransack
         search_fields(:v, args, block)
       end
 
+
       def search_fields(name, args, block)
         args << {} unless args.last.is_a?(Hash)
         args.last[:builder] ||= options[:builder]
@@ -131,6 +132,17 @@ module Ransack
           objectify_options(options), @default_options.merge(html_options)
         )
       end
+
+
+      def display_checkbox(options = {}, html_options = {})
+
+        @template.check_box(@object_name, :d, objectify_options(options), @default_options.merge(html_options))
+        # check_box(
+        #   @object_name, :d, @default_options.merge(html_options)
+        # )
+      end
+
+
 
       def combinator_select(options = {}, html_options = {})
         @template.collection_select(
