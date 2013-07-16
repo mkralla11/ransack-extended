@@ -50,7 +50,7 @@ module Ransack
       end
 
       private
-      def attribute_to_eval_string(query)
+      def attribute_to_eval_string(query="")
         debugger
         all_associations = []
 
