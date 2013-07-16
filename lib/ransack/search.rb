@@ -26,7 +26,7 @@ module Ransack
     end
 
     def displayer(str)
-      @context.contextualize(str)
+      @context.displayer_hash
     end
 
     def build(params)

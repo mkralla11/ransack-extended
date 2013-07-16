@@ -2,7 +2,7 @@ require 'ransack/visitor'
 
 module Ransack
   class Context
-    attr_reader :search, :object, :klass, :base, :engine, :arel_visitor, :displayer
+    attr_reader :search, :object, :klass, :base, :engine, :arel_visitor
     attr_accessor :auth_object, :search_key
 
     class << self
@@ -28,6 +28,7 @@ module Ransack
     end
 
     def initialize(object, options = {})
+      @displayer_array = []
       @object = object.scoped
       @klass = @object.klass
       @join_dependency = join_dependency(@object)
@@ -44,6 +45,12 @@ module Ransack
       end
     end
 
+    def display_array
+      @displayer_array
+    end
+
+
+
     # Convert a string representing a chain of associations and an attribute
     # into the attribute itself
     def contextualize(str)
@@ -51,12 +58,11 @@ module Ransack
       table_for(parent)[attr_name]
     end
 
-    # def displayer
-      
-    # end
+
 
     def bind(object, str)
       object.parent, object.attr_name = @bind_pairs[str]
+      @displayer_array << ["#{object.parent}.#{object.attr_name}"]
     end
 
     def traverse(str, base = @base)
