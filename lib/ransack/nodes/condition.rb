@@ -65,7 +65,6 @@ module Ransack
 
 
       def attributes=(args)
-        debugger
         case args
         when Array
           args.each do |attr|

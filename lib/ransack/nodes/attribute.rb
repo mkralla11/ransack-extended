@@ -3,7 +3,7 @@ module Ransack
     class Attribute < Node
       include Bindable
 
-      attr_reader :name
+      attr_reader :name, :evaluatable_attribute
 
       delegate :blank?, :present?, :==, :to => :name
       delegate :engine, :to => :context
@@ -46,15 +46,21 @@ module Ransack
       end
 
       def inspect
-        "Attribute <#{name}>"
+        "Attribute <#{name}>, Evalstring <#{evaluatable_attribute}>"
       end
 
       private
-      def attribute_to_eval_string(query, str="")
+      def attribute_to_eval_string(query)
         debugger
-        query = query.split("_")
+        all_associations = []
 
+        context.base.active_record.reflect_on_all_associations.map { |assoc| all_associations << assoc.name}
 
+        @match = all_associations.detect { |assoc| query =~ Regexp.new("^#{assoc}") }
+
+        query = query.gsub(@match + "_", @match + "." )
+
+        query
       end
 
     end
