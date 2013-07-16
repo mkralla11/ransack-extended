@@ -7,11 +7,15 @@ module Ransack
 
   	def initialize(options={})
   		super()
-  		@show = []
+  		@show = ["test"]
   	end
 
     def show=(str)
       @show << str
+    end
+
+    def inspect
+      "<show: #{show}>"
     end
 
   end
