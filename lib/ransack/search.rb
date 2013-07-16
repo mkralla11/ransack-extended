@@ -18,6 +18,7 @@ module Ransack
       @context = Context.for(object, options)
       @context.auth_object = options[:auth_object]
       @base = Nodes::Grouping.new(@context, 'and')
+      @displayer = Displayer.new(@context)
       build(params.with_indifferent_access)
     end
 

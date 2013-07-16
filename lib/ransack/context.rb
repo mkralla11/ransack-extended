@@ -46,10 +46,6 @@ module Ransack
       end
     end
 
-    def displayer=(str)
-      @displayer << str
-    end
-
 
     # Convert a string representing a chain of associations and an attribute
     # into the attribute itself
@@ -62,11 +58,6 @@ module Ransack
 
     def bind(object, str)
       object.parent, object.attr_name = @bind_pairs[str]
-      # if object.parent.active_record.name != "User"
-      #   @displayer_array << ["#{object.parent.tables.first.name.pluralize}.#{object.attr_name}"]
-      # else
-      #   @displayer_array << ["#{object.attr_name}"]
-      # end
     end
 
     def traverse(str, base = @base)
