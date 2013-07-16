@@ -5,7 +5,8 @@ module Ransack
 
     attr_reader :displayer
 
-  	def initialize(context)
+  	def initialize(context, options={})
+      debugger
   		super(context)
   		@displayer = []
   	end
