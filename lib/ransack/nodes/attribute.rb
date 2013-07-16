@@ -11,7 +11,7 @@ module Ransack
       def initialize(context, name = nil)
         super(context)
         self.name = name unless name.blank?
-        self.evaluatable_attribute = attribute_to_eval_string(name)
+        self.evaluatable_attribute = attribute_to_eval_string(name) || ""
       end
 
       def name=(name)
