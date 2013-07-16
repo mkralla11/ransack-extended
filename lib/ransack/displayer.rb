@@ -1,5 +1,5 @@
 module Ransack
-  class Displayer << search
+  class Displayer < Ransack::Search
 
     attr_reader :displayer
 
