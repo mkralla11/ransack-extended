@@ -127,6 +127,7 @@ module Ransack
       end
 
       def build_display(display = nil)
+        debugger
         Display.new(@context, display).tap do |display|
           self.display << display
         end
