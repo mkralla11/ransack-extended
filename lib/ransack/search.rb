@@ -29,7 +29,7 @@ module Ransack
     end
 
     def display=(str="blah")
-      self.display << str
+      @display << str
     end
 
     def build(params)
