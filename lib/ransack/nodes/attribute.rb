@@ -47,12 +47,11 @@ module Ransack
       end
 
       def inspect
-        "Attribute <#{name}>, Evalstring <#{eval_attribute}>"
+        "Attribute <#{name}>, EvalAttribute <#{eval_attribute}>"
       end
 
       private
       def attribute_to_eval_string(query)
-        debugger
         if !query.blank?
           all_associations = []
 

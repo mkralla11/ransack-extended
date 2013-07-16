@@ -6,7 +6,6 @@ module Ransack
 
       attr_reader :predicate
       attr_accessor :display
-      attr_accessor :display_hash
 
       class << self
         def extract(context, key, values)
@@ -41,10 +40,7 @@ module Ransack
         end
       end
 
-      def display=(show)
-        debugger
-        @display=show
-      end
+
       alias :d= :display=
       alias :d :display
 
@@ -229,7 +225,7 @@ module Ransack
       end
 
       def inspect
-        data =[['attributes', a.try(:map, &:name)], ['eval_attribute', a.try(:map,&:eval_attribute)], ['predicate', p], ['combinator', m], ['values', v.try(:map, &:value)]].reject { |e|
+        data =[['attributes', a.try(:map, &:name)], ['eval_attributes', a.try(:map,&:eval_attribute)], ['predicate', p], ['combinator', m], ['values', v.try(:map, &:value)]].reject { |e|
           e[1].blank?
         }.map { |v| "#{v[0]}: #{v[1]}" }.join(', ')
         "Condition <#{data}>"
