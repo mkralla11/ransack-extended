@@ -43,7 +43,7 @@ module Ransack
 
       def valid?
         debugger
-        attributes.detect(&:valid?) && predicate && valid_arity? && predicate.validate(values, default_type) && valid_combinator? && (display=="1" || predicate != "bypass")
+        attributes.detect(&:valid?) && predicate && valid_arity? && predicate.validate(values, default_type) && valid_combinator? && (display=="1" || predicate.name != "bypass")
       end
 
       def valid_arity?
