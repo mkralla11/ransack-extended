@@ -5,6 +5,7 @@ module Ransack
 
       def initialize(context, show = nil)
         super(context)
+        debugger
         @display = show
       end
 
