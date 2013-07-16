@@ -63,6 +63,7 @@ module Ransack
     def bind(object, str)
       debugger
       object.parent, object.attr_name = @bind_pairs[str]
+      debugger
       @displayer_array << ["#{object.parent}.#{object.attr_name}"]
     end
 
