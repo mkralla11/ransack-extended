@@ -1,15 +1,15 @@
 require 'ransack/nodes'
 require 'ransack/context'
 require 'ransack/naming'
-require 'ransack/displayer'
+# require 'ransack/displayer'
 
 module Ransack
   class Search
     include Naming
 
-    attr_reader :base, :context, :displayer
+    attr_reader :base, :context, :display
 
-    delegate :object, :klass, :displayer, :to => :context
+    delegate :object, :klass, :display, :to => :context
     delegate :new_grouping, :new_condition,
              :build_grouping, :build_condition,
              :translate, :to => :base
@@ -19,7 +19,7 @@ module Ransack
       @context = Context.for(object, options)
       @context.auth_object = options[:auth_object]
       debugger
-      @displayer = Displayer.new()
+      @display = ["test"]
       @base = Nodes::Grouping.new(@context, 'and')
       build(params.with_indifferent_access)
     end
@@ -28,7 +28,9 @@ module Ransack
       @context.evaluate(self, opts)
     end
 
-
+    def display=(str)
+      @display << str
+    end
 
     def build(params)
       collapse_multiparameter_attributes!(params).each do |key, value|
@@ -96,7 +98,7 @@ module Ransack
     end
 
     def inspect
-      "Ransack::Search<class: #{klass.name}, base: #{base.inspect}, displayer:#{displayer.show}>"
+      "Ransack::Search<class: #{klass.name}, base: #{base.inspect}, display:#{display}>"
     end
 
     private
