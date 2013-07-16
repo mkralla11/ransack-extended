@@ -28,7 +28,7 @@ module Ransack
       @context.evaluate(self, opts)
     end
 
-    def display=(str)
+    def display=(str="")
       self.display << str
     end
 
