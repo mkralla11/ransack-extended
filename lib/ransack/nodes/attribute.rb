@@ -68,7 +68,7 @@ module Ransack
             @field = query
           end
           
-          query, @field
+          return query, @field
         end
       end
 
