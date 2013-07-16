@@ -4,15 +4,15 @@ module Ransack
       i18n_word :attribute, :predicate, :combinator, :value, :display
       i18n_alias :a => :attribute, :p => :predicate, :m => :combinator, :v => :value, :d => :display
 
-      attr_reader :predicate
+      attr_reader :predicate, :display
 
       class << self
         def extract(context, key, values)
-          display, attributes, predicate = extract_attributes_and_predicate(key)
+          attributes, predicate = extract_attributes_and_predicate(key)
           if attributes.size > 0
             combinator = key.match(/_(or|and)_/) ? $1 : nil
             condition = self.new(context)
-            key
+
             condition.build(
               :d => display,
               :a => attributes,
@@ -34,7 +34,7 @@ module Ransack
           predicate = Predicate.named(name)
           raise ArgumentError, "No valid predicate for #{key}" unless predicate
           attributes = str.split(/_and_|_or_/)
-          [key, attributes, predicate]
+          [attributes, predicate]
         end
       end
 
@@ -74,18 +74,6 @@ module Ransack
       alias :a= :attributes=
 
 
-      def display
-        @display ||= nil
-      end
-      alias :d :display
-
-      def display=(show)
-        debugger
-        if show == "1"
-          Display.new(@context, show)
-        end
-      end
-      alias :d= :display=
 
       def values
         @values ||= []
@@ -174,6 +162,16 @@ module Ransack
       def hash
         [attributes, predicate, values, combinator].hash
       end
+
+
+
+
+      def display=(show)
+        debugger
+        show == "1" ? self.display = 1 || self.display = nil
+      end
+      alias :d= :display=
+
 
       def predicate_name=(name)
         self.predicate = Predicate.named(name)
