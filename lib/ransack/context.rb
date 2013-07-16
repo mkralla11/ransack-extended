@@ -29,7 +29,6 @@ module Ransack
     end
 
     def initialize(object, options = {})
-      @displayer = ["test"]
       @object = object.scoped
       @klass = @object.klass
       @join_dependency = join_dependency(@object)

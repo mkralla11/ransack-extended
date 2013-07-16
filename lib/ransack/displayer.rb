@@ -1,5 +1,3 @@
-
-
 module Ransack
   class Displayer
 
