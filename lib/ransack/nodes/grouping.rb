@@ -84,7 +84,7 @@ module Ransack
         vals = opts[:values] || 1
         condition = Condition.new(@context)
         condition.predicate = Predicate.named('eq')
-        condition.build_display
+        # condition.display = Condition.
         attrs.times { condition.build_attribute }
         vals.times { condition.build_value }
         condition

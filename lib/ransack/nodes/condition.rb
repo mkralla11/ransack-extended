@@ -114,15 +114,13 @@ module Ransack
         end
       end
 
-      def build_display(display = nil)
-        debugger
-        Display.new(@context, display).tap do |display|
-          self.display = display
-        end
-      end
+      # def build_display(display = nil)
+      #     self.display = display
+      # end
 
       def build_value(val = nil)
         Value.new(@context, val).tap do |value|
+          debugger
           self.values << value
         end
       end
@@ -166,8 +164,9 @@ module Ransack
 
 
 
-      def display=(show)
-        @display = show
+      def display=(display)
+        @display = display
+        display
       end
       alias :d= :display=
 
