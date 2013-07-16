@@ -19,7 +19,7 @@ module Ransack
       @context = Context.for(object, options)
       @context.auth_object = options[:auth_object]
       debugger
-      @display = ["test"]
+      @display = []
       @base = Nodes::Grouping.new(@context, 'and')
       build(params.with_indifferent_access)
     end
@@ -28,7 +28,7 @@ module Ransack
       @context.evaluate(self, opts)
     end
 
-    def display=(str="blah")
+    def display=(str)
       @display << str
     end
 

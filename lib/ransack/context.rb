@@ -2,8 +2,7 @@ require 'ransack/visitor'
 
 module Ransack
   class Context
-    attr_reader :search, :object, :klass, :base, :engine, :arel_visitor, :displayer
-    attr_accessor :auth_object, :search_key, :displayer
+    attr_reader :search, :object, :klass, :base, :engine, :arel_visitor
 
     class << self
 
@@ -94,6 +93,7 @@ module Ransack
             path += association_parts
             association_parts = []
             base = klassify(klass || found_assoc)
+            display = { base.to_sym => association_parts }
           end
         end
       end
