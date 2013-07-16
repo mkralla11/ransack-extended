@@ -61,10 +61,12 @@ module Ransack
 
 
     def bind(object, str)
-      debugger
       object.parent, object.attr_name = @bind_pairs[str]
-      debugger
-      @displayer_array << ["#{object.parent}.#{object.attr_name}"]
+      if object.parent.active_record.name != "User"
+        @displayer_array << ["#{object.parent.tables.first.name.pluralize}.#{object.attr_name}"]
+      else
+        @displayer_array << ["#{object.attr_name}"]
+      end
     end
 
     def traverse(str, base = @base)
