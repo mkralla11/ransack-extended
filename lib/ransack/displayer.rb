@@ -5,9 +5,9 @@ module Ransack
 
     attr_reader :displayer
 
-  	def initialize(context, displayer = [])
+  	def initialize(context)
   		super(context)
-  		@displayer = displayer
+  		@displayer = []
   	end
 
     def displayer=(str)
