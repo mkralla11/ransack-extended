@@ -3,7 +3,8 @@ module Ransack
     class Attribute < Node
       include Bindable
 
-      attr_reader :name, :evaluatable_attribute
+      attr_reader :name
+      attr_accessor :evaluatable_attribute
 
       delegate :blank?, :present?, :==, :to => :name
       delegate :engine, :to => :context
@@ -11,7 +12,7 @@ module Ransack
       def initialize(context, name = nil)
         super(context)
         self.name = name unless name.blank?
-        self.evaluatable_attribute = attribute_to_eval_string(name)
+        @evaluatable_attribute = attribute_to_eval_string(name) 
       end
 
       def name=(name)
@@ -46,21 +47,23 @@ module Ransack
       end
 
       def inspect
-        "Attribute <#{name}>, Evalstring <#{evaluatable_attribute}>"
+        "Attribute <#{name}>, Evalstring <#{@evaluatable_attribute}>"
       end
 
       private
-      def attribute_to_eval_string(query="")
+      def attribute_to_eval_string(query)
         debugger
-        all_associations = []
+        if !query.blank?
+          all_associations = []
 
-        context.base.active_record.reflect_on_all_associations.map { |assoc| all_associations << assoc.name.to_s}
+          context.base.active_record.reflect_on_all_associations.map { |assoc| all_associations << assoc.name.to_s}
 
-        @match = all_associations.detect { |assoc| query =~ Regexp.new("^#{assoc}") }
+          @match = all_associations.detect { |assoc| query =~ Regexp.new("^#{assoc}") }
 
-        query = query.gsub(@match + "_", @match + "." ) if !@match.blank?
+          query = query.gsub(@match + "_", @match + "." ) if !@match.blank?
 
-        query
+          query
+        end
       end
 
     end
