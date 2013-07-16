@@ -11,7 +11,7 @@ module Ransack
       def initialize(context, name = nil)
         super(context)
         self.name = name unless name.blank?
-        self.evaluatable_attribute = attribute_to_eval_string(name) || ""
+        self.evaluatable_attribute = attribute_to_eval_string(name)
       end
 
       def name=(name)
@@ -54,11 +54,11 @@ module Ransack
         debugger
         all_associations = []
 
-        context.base.active_record.reflect_on_all_associations.map { |assoc| all_associations << assoc.name}
+        context.base.active_record.reflect_on_all_associations.map { |assoc| all_associations << assoc.name.to_s}
 
         @match = all_associations.detect { |assoc| query =~ Regexp.new("^#{assoc}") }
 
-        query = query.gsub(@match + "_", @match + "." )
+        query = query.gsub(@match + "_", @match + "." ) if !@match.blank?
 
         query
       end
