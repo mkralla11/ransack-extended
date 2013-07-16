@@ -3,15 +3,15 @@
 module Ransack
   class Displayer
 
-    attr_reader :displayer
+    attr_reader :show
 
-  	def initialize(context, options={})
+  	def initialize(options={})
   		super()
-  		@displayer = []
+  		@show = []
   	end
 
-    def displayer=(str)
-      @displayer << str
+    def show=(str)
+      @show << str
     end
 
   end

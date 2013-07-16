@@ -19,7 +19,7 @@ module Ransack
       @context = Context.for(object, options)
       @context.auth_object = options[:auth_object]
       debugger
-      @displayer = Displayer.new(@context)
+      @displayer = Displayer.new()
       @base = Nodes::Grouping.new(@context, 'and')
       build(params.with_indifferent_access)
     end
@@ -96,7 +96,7 @@ module Ransack
     end
 
     def inspect
-      "Ransack::Search<class: #{klass.name}, base: #{base.inspect}>"
+      "Ransack::Search<class: #{klass.name}, base: #{base.inspect}, displayer:#{diplayer.inspect}>"
     end
 
     private
