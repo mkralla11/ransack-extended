@@ -164,11 +164,12 @@ module Ransack
 
 
 
-      def display=(display)
-        @display = display
-        display
-      end
+      # def display=(display)
+      #   @display = display
+      #   display
+      # end
       alias :d= :display=
+      alias :d :display
 
 
       def predicate_name=(name)
