@@ -11,6 +11,7 @@ module Ransack
       class << self
         def extract(context, key, values)
           attributes, predicate = extract_attributes_and_predicate(key)
+ 
           if attributes.size > 0
             combinator = key.match(/_(or|and)_/) ? $1 : nil
             condition = self.new(context)
@@ -40,6 +41,12 @@ module Ransack
         end
       end
 
+      def display=(show)
+        debugger
+        @display=show
+      end
+      alias :d= :display=
+      alias :d :display
 
 
       def valid?
@@ -58,6 +65,7 @@ module Ransack
 
 
       def attributes=(args)
+        debugger
         case args
         when Array
           args.each do |attr|
@@ -164,8 +172,6 @@ module Ransack
 
 
 
-      alias :d= :display=
-      alias :d :display
 
 
       def predicate_name=(name)

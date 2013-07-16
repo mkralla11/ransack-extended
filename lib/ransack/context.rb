@@ -94,8 +94,6 @@ module Ransack
             path += association_parts
             association_parts = []
             base = klassify(klass || found_assoc)
-            debugger
-            display = { base.to_sym => association_parts }
           end
         end
       end
