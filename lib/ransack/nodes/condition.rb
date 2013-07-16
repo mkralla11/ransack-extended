@@ -167,8 +167,7 @@ module Ransack
 
 
       def display=(show)
-        debugger
-        show == "1" ? self.display = 1 : self.display = nil
+        @display = show
       end
       alias :d= :display=
 
