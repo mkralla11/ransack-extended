@@ -4,7 +4,7 @@ module Ransack
       include Bindable
 
       attr_reader :name
-      attr_accessor :evaluatable_attribute
+      attr_accessor :eval_attribute
 
       delegate :blank?, :present?, :==, :to => :name
       delegate :engine, :to => :context
@@ -12,7 +12,7 @@ module Ransack
       def initialize(context, name = nil)
         super(context)
         self.name = name unless name.blank?
-        @evaluatable_attribute = attribute_to_eval_string(name) 
+        self.eval_attribute = attribute_to_eval_string(name) 
       end
 
       def name=(name)
@@ -47,7 +47,7 @@ module Ransack
       end
 
       def inspect
-        "Attribute <#{name}>, Evalstring <#{@evaluatable_attribute}>"
+        "Attribute <#{name}>, Evalstring <#{eval_attribute}>"
       end
 
       private
