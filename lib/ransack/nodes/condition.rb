@@ -6,6 +6,7 @@ module Ransack
 
       attr_reader :predicate
       attr_accessor :display
+      attr_accessor :display_hash
 
       class << self
         def extract(context, key, values)
@@ -42,7 +43,6 @@ module Ransack
 
 
       def valid?
-        debugger
         attributes.detect(&:valid?) && predicate && valid_arity? && predicate.validate(values, default_type) && valid_combinator? && (display=="1" || predicate.name != "bypass")
       end
 
@@ -122,7 +122,6 @@ module Ransack
 
       def build_value(val = nil)
         Value.new(@context, val).tap do |value|
-          debugger
           self.values << value
         end
       end
@@ -132,7 +131,6 @@ module Ransack
       end
 
       def build(params)
-        debugger
         params.with_indifferent_access.each do |key, value|
           if key.match(/^(a|v|p|m|d)$/)
             self.send("#{key}=", value)
@@ -166,10 +164,6 @@ module Ransack
 
 
 
-      # def display=(display)
-      #   @display = display
-      #   display
-      # end
       alias :d= :display=
       alias :d :display
 
@@ -190,7 +184,6 @@ module Ransack
       alias :p :predicate_name
 
       def arel_predicate
-        debugger
         predicates = attributes.map do |attr|
           if predicate.arel_predicate != "bypass"
             attr.attr.send(predicate.arel_predicate, formatted_values_for_attribute(attr))

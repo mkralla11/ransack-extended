@@ -25,8 +25,8 @@ module Ransack
       @context.evaluate(self, opts)
     end
 
-    def displayer(opts={})
-      @context.displayer
+    def displayer(str)
+      @context.contextualize(str)
     end
 
     def build(params)

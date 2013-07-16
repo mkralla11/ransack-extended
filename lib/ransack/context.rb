@@ -51,9 +51,9 @@ module Ransack
       table_for(parent)[attr_name]
     end
 
-    def displayer
+    # def displayer
       
-    end
+    # end
 
     def bind(object, str)
       object.parent, object.attr_name = @bind_pairs[str]
