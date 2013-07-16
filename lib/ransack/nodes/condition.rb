@@ -64,12 +64,12 @@ module Ransack
         case args
         when Array
           args.each do |attr|
-            attr = Attribute.new(@context, attr)
+            attr = Attribute.new(@context, attr, display)
             self.attributes << attr if attr.valid?
           end
         when Hash
           args.each do |index, attrs|
-            attr = Attribute.new(@context, attrs[:name])
+            attr = Attribute.new(@context, attrs[:name], display)
             self.attributes << attr if attr.valid?
           end
         else
@@ -225,7 +225,7 @@ module Ransack
       end
 
       def inspect
-        data =[['attributes', a.try(:map, &:name)], ['eval_attributes', a.try(:map,&:eval_attribute)], ['predicate', p], ['combinator', m], ['values', v.try(:map, &:value)]].reject { |e|
+        data =[['attributes', a.try(:map, &:name)], ['eval_attributes', a.try(:map,&:eval_attribute)], ['diplays', a.try(:map,&:display)], ['predicate', p], ['combinator', m], ['values', v.try(:map, &:value)]].reject { |e|
           e[1].blank?
         }.map { |v| "#{v[0]}: #{v[1]}" }.join(', ')
         "Condition <#{data}>"
