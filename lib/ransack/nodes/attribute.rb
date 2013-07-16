@@ -4,7 +4,7 @@ module Ransack
       include Bindable
 
       attr_reader :name
-      attr_accessor :eval_attribute, :display
+      attr_accessor :eval_attribute, :display, :field
 
       delegate :blank?, :present?, :==, :to => :name
       delegate :engine, :to => :context
@@ -12,7 +12,7 @@ module Ransack
       def initialize(context, name = nil, display=nil)
         super(context)
         self.name = name unless name.blank?
-        self.eval_attribute = attribute_to_eval_string(name) 
+        self.eval_attribute, self.field = attribute_to_eval_string(name) 
         self.display = display
       end
 
@@ -48,7 +48,7 @@ module Ransack
       end
 
       def inspect
-        "Attribute <#{name}>, EvalAttribute <#{eval_attribute}>, Display <#{display}>"
+        "Attribute <#{name}>, EvalAttribute <#{eval_attribute}>, Field <#{field}>, Display <#{display}>"
       end
 
       private
@@ -59,10 +59,16 @@ module Ransack
           context.base.active_record.reflect_on_all_associations.map { |assoc| all_associations << assoc.name.to_s}
 
           @match = all_associations.detect { |assoc| query =~ Regexp.new("^#{assoc}") }
+          @field = nil
 
-          query = query.gsub(@match + "_", @match + "." ) if !@match.blank?
-
-          query
+          if !@match.blank?
+            @field = query.gsub(@match + "_", "")
+            query = query.gsub(@match + "_", @match + "." )
+          else
+            @field = query
+          end
+          
+          query, @field
         end
       end
 
