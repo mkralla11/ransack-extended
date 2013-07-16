@@ -2,8 +2,8 @@ require 'ransack/visitor'
 
 module Ransack
   class Context
-    attr_reader :search, :object, :klass, :base, :engine, :arel_visitor
-    attr_accessor :auth_object, :search_key
+    attr_reader :search, :object, :klass, :base, :engine, :arel_visitor, :displayer
+    attr_accessor :auth_object, :search_key, :displayer
 
     class << self
 
@@ -25,10 +25,11 @@ module Ransack
         end
       end
 
+
     end
 
     def initialize(object, options = {})
-      @displayer_array = []
+      @displayer = ["test"]
       @object = object.scoped
       @klass = @object.klass
       @join_dependency = join_dependency(@object)
@@ -45,10 +46,9 @@ module Ransack
       end
     end
 
-    def display_array
-      @displayer_array
+    def displayer=(str)
+      @displayer << str
     end
-
 
 
     # Convert a string representing a chain of associations and an attribute
@@ -62,11 +62,11 @@ module Ransack
 
     def bind(object, str)
       object.parent, object.attr_name = @bind_pairs[str]
-      if object.parent.active_record.name != "User"
-        @displayer_array << ["#{object.parent.tables.first.name.pluralize}.#{object.attr_name}"]
-      else
-        @displayer_array << ["#{object.attr_name}"]
-      end
+      # if object.parent.active_record.name != "User"
+      #   @displayer_array << ["#{object.parent.tables.first.name.pluralize}.#{object.attr_name}"]
+      # else
+      #   @displayer_array << ["#{object.attr_name}"]
+      # end
     end
 
     def traverse(str, base = @base)

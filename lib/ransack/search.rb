@@ -6,9 +6,9 @@ module Ransack
   class Search
     include Naming
 
-    attr_reader :base, :context
+    attr_reader :base, :context, :displayer
 
-    delegate :object, :klass, :to => :context
+    delegate :object, :klass, :displayer, :to => :context
     delegate :new_grouping, :new_condition,
              :build_grouping, :build_condition,
              :translate, :to => :base
@@ -25,9 +25,7 @@ module Ransack
       @context.evaluate(self, opts)
     end
 
-    def displayer(str)
-      @context.displayer_hash
-    end
+
 
     def build(params)
       collapse_multiparameter_attributes!(params).each do |key, value|
