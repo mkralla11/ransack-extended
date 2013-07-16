@@ -4,7 +4,8 @@ module Ransack
       i18n_word :attribute, :predicate, :combinator, :value, :display
       i18n_alias :a => :attribute, :p => :predicate, :m => :combinator, :v => :value, :d => :display
 
-      attr_reader :predicate, :display
+      attr_reader :predicate
+      attr_accessor :display
 
       class << self
         def extract(context, key, values)
