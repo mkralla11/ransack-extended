@@ -1,6 +1,7 @@
 require 'ransack/nodes'
 require 'ransack/context'
 require 'ransack/naming'
+require 'ransack/displayer'
 
 module Ransack
   class Search
