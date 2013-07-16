@@ -96,6 +96,8 @@ module Ransack
     end
 
     def inspect
+      debugger
+      stop = 1
       "Ransack::Search<class: #{klass.name}, base: #{base.inspect}, displayer:#{displayer.inspect}>"
     end
 
