@@ -11,6 +11,7 @@ module Ransack
       def initialize(context, name = nil)
         super(context)
         self.name = name unless name.blank?
+        self.evaluatable_attribute = attribute_to_eval_string(name)
       end
 
       def name=(name)
@@ -46,6 +47,14 @@ module Ransack
 
       def inspect
         "Attribute <#{name}>"
+      end
+
+      private
+      def attribute_to_eval_string(query, str="")
+        debugger
+        query = query.split("_")
+
+
       end
 
     end
