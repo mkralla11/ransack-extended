@@ -98,7 +98,7 @@ module Ransack
     end
 
     def inspect
-      "Ransack::Search<class: #{klass.name}, base: #{base.inspect}, display:#{display}>"
+      "Ransack::Search<class: #{klass.name}, base: #{base.inspect}, display:#{@display}>"
     end
 
     private
